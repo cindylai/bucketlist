@@ -27,10 +27,10 @@ fs.readdirSync('./routes').forEach(function (file){
 app.use(express.static(__dirname + '/public'));
   
 // Catch any routes not already handed with an error message
-app.use(function(req, res) {
-    var message = 'Error, did not understand path '+req.path;
-  res.status(404).render('error', { 'message': message });
-});
+// app.use(function(req, res) {
+//     var message = 'Error, did not understand path '+req.path;
+//   res.status(404).render('error', { 'message': message });
+// });
 
 var httpServer = require('http').createServer(app);
 
