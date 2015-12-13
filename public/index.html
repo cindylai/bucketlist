@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script src="./jquery-1.11.3.min.js"></script>
-	<script src="venues.js"></script>
+	<title>Bucketlist</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+	<script src="/js/bootstrap.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/js/venues.js"></script>
 </head>
 <body>
 
-
-	
+	<!-- 
 	<form id="form">
 		<p id="inputArea"> <h2>Enter a Location </h2></p> 
 		<input id="enterLocation" type="text" value="" />
@@ -20,14 +24,58 @@
 		</select>
 		<input id="submit" type="submit" value="find"/>
 
-	</form>
+	</form> -->
+
+<!-- 	<input id="location" type="text" size="20" value="">
+	<input id="artsRec" type="button" value="Arts and Recreation">
+	<input id="food" type="button" value="Food">
+	<input id="night" type="button" value="Nightlife">
+	<input id="outdoors" type="button" value="Outdoors"> -->
+
+	<div class="row">
+  <div class="col-md-3"></div>
+ 
+  <div class="col-md-6">
+  <div class="centered"> <h2> BucketList </h2></div>
+<br>
+	<div class="input-group">
+  		<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
+  		<input id="location" type="text" class="form-control" placeholder=" ex: Pittsburgh,PA">
+	</div>
 	<br>
+	<div class="centered">
+	  <button id="artsRec" type="button" class="btn btn-default btn-lg">
+	  	<span class="glyphicon glyphicon-film"></span>
+	  </button>
+
+	  <button id="food" type="button" class="btn btn-default btn-lg">
+  		<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+	  </button>
+
+	  <button id="night" type="button" class="btn btn-default btn-lg">
+	  		<span class="glyphicon glyphicon-glass" aria-label="Nightlife"></span>
+	  </button>
+
+	  <button id="outdoors" type="button" class="btn btn-default btn-lg">
+	  		<span class="glyphicon glyphicon-tree-conifer"></span>
+	  </button>
+
+	  <br>
+	  <br>
+	 </div>
 	<div id="responseArea">
-		<table>
+	<!-- 	<table>
 			
-		</table>
+		</table> -->
 	</div>
 
+	 
+	 </div>
+
+  <div class="col-md-3"></div>
+</div>
+	
+	
 
 
 

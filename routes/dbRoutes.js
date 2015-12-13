@@ -2,25 +2,25 @@
 var mongoModel = require("../models/mongoModel.js")
 
 // Define the routes for this controller
-exports.init = function(app) {
-  app.get('/', index); //welcome page
-  // The collection parameter maps directly to the mongoDB collection
-  app.put('/:collection', doCreate); // CRUD Create
-  app.get('/:collection', doRetrieve); // CRUD Retrieve
-  app.post('/:collection', doUpdate); // CRUD Update
-  app.delete('/:collection', doDelete); //CRUD Delete
-}
+// exports.init = function(app) {
+//   app.get('/', index); //welcome page
+//   // The collection parameter maps directly to the mongoDB collection
+//   app.put('/:collection', doCreate); // CRUD Create
+//   app.get('/:collection', doRetrieve); // CRUD Retrieve
+//   app.post('/:collection', doUpdate); // CRUD Update
+//   app.delete('/:collection', doDelete); //CRUD Delete
+// }
 
 // No path:  display instructions for use
-index = function(req, res) {
-  res.render('help', {title: 'MongoDB Test'})
-};
+// index = function(req, res) {
+//   res.render('index', {title: 'MongoDB Test'})
+// };
 
 /********** CRUD Create *******************************************************
  * Take the object defined in the request body and do the Create
  * operation in mongoModel.
  */ 
-doCreate = function(req, res){
+exports.doCreate = function(req, res){
   if (Object.keys(req.body).length == 0) {
     res.render('message', {title: 'Mongo Demo', obj: "No create message body found"});
     return;
@@ -40,7 +40,7 @@ doCreate = function(req, res){
  * Take the object defined in the query string and do the Retrieve
  * operation in mongoModel.*/ 
 
-doRetrieve = function(req, res){
+exports.doRetrieve = function(req, res){
 
   mongoModel.retrieve(
     req.params.collection, 
@@ -57,7 +57,7 @@ doRetrieve = function(req, res){
 }
 
 /********** CRUD Update ********************************************************/ 
-doUpdate = function(req, res){
+exports.doUpdate = function(req, res){
   // if there is no filter to select documents to update, select all documents
   var filter = req.body.find ? JSON.parse(req.body.find) : {};
   // if there no update operation defined, render an error page.
@@ -73,7 +73,7 @@ doUpdate = function(req, res){
 }
 
 /********** CRUD Delete ********************************************************/ 
-doDelete = function(req,res){
+exports.doDelete = function(req,res){
     mongoModel.remove(
     req.params.collection, 
     req.query,
