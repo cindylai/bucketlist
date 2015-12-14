@@ -26,9 +26,9 @@ $(function(){
 		})
 });
 
-$(function () {
-  $('[data-toggle="popover"]').popover()
-});
+// $(function () {
+//   $('[data-toggle="popover"]').popover()
+// });
 
 localStorage.location = $("#location").val();
 console.log("localStorage =",localStorage);
@@ -104,8 +104,7 @@ function displayDetails(response) {
 			var url = venues[i]["url"];
 
 			search += "<tr>";
-			//search += "<td>"+"<button id='moreDetails' type='button' class='btn btn-link'>"+name+"</button>"+"</td><td><button class='add_venue' type='button'><span class='glyphicon glyphicon-plus'></span></button></td>";
-			search += "<td><button id='moreDetails' type='button' class='btn btn-link'>"+name+"</button></td>"+"<td><button class='addVenue' type='button'><span class='glyphicon glyphicon-plus'></span></button></td>";
+			search += "<td><button id='moreDetails' type='button' class='btn btn-link' data-toggle='modal' data-target='#myModal'>"+name+"</button></td>"+"<td><button class='addVenue' type='button'><span class='glyphicon glyphicon-plus'></span></button></td>";
 
 			// search += "<td><table class='table id='hideDetails'><tr>"+name+'</tr><tr>'+address+'</tr><tr>'+phone+'</tr><tr>'+lat+'</tr><tr>'+lng+'</tr><tr>'+url+"</tr></table></td>";
 			search += "<td id='hideDetails'>"+name+"</td><td id='hideDetails'>"+address+"</td><td id='hideDetails'>"+phone+"</td><td id='hideDetails'>"+lat+"</td><td id='hideDetails'>"+lng+"</td><td id='hideDetails'>"+url+"</td>";
@@ -127,13 +126,17 @@ $(function(){
 		var phone = $(this).parent().next().first().next().next().text();
 		var lat = $(this).parent().next().first().next().next().next().text(); 
 		var lng = $(this).parent().next().first().next().next().next().next().text(); 
+		var url = $(this).parent().next().first().next().next().next().next().next().text()
 		
+		console.log('URL HERE=',url);
+
 		var venueData = {};
 		venueData.name = name;
 		venueData.address = address;
 		venueData.phone = phone;
 		venueData.lat = lat;
 		venueData.lng = lng;
+		venueData.url = url;
 		console.log("data=",venueData);
 		
 		$.ajax({
@@ -144,8 +147,33 @@ $(function(){
 		     console.log("put in database");
 	      }
     	});
+    	$(this).html('Added');
 
 
 		});
 });
+
+
+$(function(){
+	$("#responseArea").on("click","#moreDetails",function(venue){
+		console.log("trying to view more details");
+		console.log($(this).text());
+		console.log("next",$(this).parent().next().next().text());
+		console.log("next",$(this).parent().next().next().next().text());
+		var name = $(this).parent().next().next().text();
+		var address = $(this).parent().next().next().next().text();
+		var phone = $(this).parent().next().next().next().next().text();
+		var lat = $(this).parent().next().next().next().next().next().text();
+		var lng = $(this).parent().next().next().next().next().next().next().text();
+		var url = $(this).parent().next().next().next().next().next().next().next().text();
+
+		$(".modal-title").html(name);
+		$(".modal-body p").html(address, phone, lat, lng, url);
+		
+
+	});
+});
+
+
+
 
