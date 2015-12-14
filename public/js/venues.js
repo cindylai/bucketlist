@@ -122,68 +122,30 @@ function displayDetails(response) {
 
 $(function(){
 	$("#responseArea").on("click",".addVenue",function(venue) {
-		
-		//console.log('venue=',venue);
-		//console.log('hi,',$(this).parent().next().firstChild());
-		//console.log('2',$(this).parent().parent().parent().parent().parent());
-		//console.log("hello",$(this).parent().parent().next());
-		//console.log("3",$(this).parent().next().children().text());
-		console.log('hello',$(this).parent().parent().next());
-		console.log('hi',$(this).parent().next().first().text());
-		console.log('heyyy',$(this).parent().next().first().next().text());
-
 		var name = $(this).parent().next().first().text();
 		var address = $(this).parent().next().first().next().text();
 		var phone = $(this).parent().next().first().next().next().text();
 		var lat = $(this).parent().next().first().next().next().next().text(); 
 		var lng = $(this).parent().next().first().next().next().next().next().text(); 
-		console.log('name', name);
-		console.log('address',address);
-		console.log('phone', phone);
-		console.log('lat',lat);
-		console.log('lng',lng);
 		
 		var venueData = {};
+		venueData.name = name;
+		venueData.address = address;
+		venueData.phone = phone;
+		venueData.lat = lat;
+		venueData.lng = lng;
+		console.log("data=",venueData);
 		
-		// $.ajax({
-	 //    url:"/venues/",
-	 //    data: venueData,
-	 //    type: "PUT",
-	 //    success: function(result) {
-		//      console.log("put in database");
-	 //      }
-  //   	});
+		$.ajax({
+	    url:"/venues/",
+	    data: venueData,
+	    type: "PUT",
+	    success: function(result) {
+		     console.log("put in database");
+	      }
+    	});
 
 
 		});
 });
-
-// $(function(){
-// 	$("#addPlayerForm").submit(function(e){
-// 		e.preventDefault();
-// 		var name = $("#playername").val();
-// 		var age = $("#age").val();
-// 		var country = $("#country").val();
-// 		var rank = $("#rank").val();
-// 		$.ajax({
-// 	    url:'venue?name='+name+'&address='+address+'&phone='+phone+'&lat='+lat+'&lng='+lng+'&url='+url,
-// 	    type: "PUT",
-// 	    success: function(result) {
-// 		      var temp = "<tr>"+"<td>"+result["playername"]+"</td>"+"<td>"+result["age"]+"</td>"+"<td>"+result["country"]+"</td>"+"<td>"+result["rank"]+"</td>";
-// 		      $("#responseArea1 table").append(temp);
-// 	      }
-//     	});
-// 	});
-// });
-// var name = venues[i]["name"];
-// 			var address = venues[i]["location"]["formattedAddress"];
-// 			var phone = venues[i]["contact"]["formattedPhone"];
-// 			var lat = venues[i]["location"]["lat"];
-// 			var lng = venues[i]["location"]["lng"];
-// 			var checkinCount = venues[i]["stats"]["checkinsCount"];
-// 			var url = venues[i]["url"];
-
-// 'venue?name='+name+'&address='+address+'&phone='+phone+'&lat='+lat+'&lng='+lng+'&url='+url
-
-
 
