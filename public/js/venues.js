@@ -131,6 +131,17 @@ $(function(){
 		console.log('hello',$(this).parent().parent().next());
 		console.log('hi',$(this).parent().next().first().text());
 		console.log('heyyy',$(this).parent().next().first().next().text());
+
+		var name = $(this).parent().next().first().text();
+		var address = $(this).parent().next().first().next().text();
+		var phone = $(this).parent().next().first().next().next().text();
+		var lat = $(this).parent().next().first().next().next().next().text(); 
+		var lng = $(this).parent().next().first().next().next().next().next().text(); 
+		console.log('name', name);
+		console.log('address',address);
+		console.log('phone', phone);
+		console.log('lat',lat);
+		console.log('lng',lng);
 		
 		var venueData = {};
 		
