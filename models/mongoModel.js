@@ -62,22 +62,30 @@ exports.retrieve = function(collection, query, callback) {
 }
 
 /********** CRUD Update -> Mongo updateMany ***********************************/
-exports.update = function(collection, filter, update, callback) {
-  mongoDB
-    .collection(collection)     // The collection to update
-    .updateMany(                // Use updateOne to only update 1 document
-      filter,                   // Filter selects which documents to update
-      update,                   // The update operation
-      {upsert:true},            // If document not found, insert one with this update
-                                // Set upsert false (default) to not do insert
-      function(err, status) {   // Callback upon error or success
-        if (err) doError(err);
-        callback('Modified '+ status.modifiedCount 
-                 +' and added '+ status.upsertedCount+" documents");
-        });
-}
+// exports.update = function(collection, filter, update, callback) {
+//   mongoDB
+//     .collection(collection)     // The collection to update
+//     .updateMany(                // Use updateOne to only update 1 document
+//       filter,                   // Filter selects which documents to update
+//       update,                   // The update operation
+//       {upsert:true},            // If document not found, insert one with this update
+//                                 // Set upsert false (default) to not do insert
+//       function(err, status) {   // Callback upon error or success
+//         if (err) doError(err);
+//         callback('Modified '+ status.modifiedCount 
+//                  +' and added '+ status.upsertedCount+" documents");
+//         });
+// }
 
-  
+exports.update = function(collection, query, callback){
+  mongoDB.collection(collection).update(
+    JSON.parse(query.find), JSON.parse(query.update),
+    function(err,docs){
+      if (err) doError(err);
+        callback('Updated!');
+    });
+  }
+ 
 
 /********** CRUD Delete -> Mongo deleteOne ***********************/
 

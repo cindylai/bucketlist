@@ -7,3 +7,6 @@
     height: 400px;
 }
 
+#hideDetails{
+	display: none;
+}

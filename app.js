@@ -37,12 +37,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Handle static files
 app.use(express.static(__dirname + '/public'));
 
-app.get('/index',function(req,res){
-	res.sendFile(__dirname + '/public/index.html');
+app.get('/',function(req,res){
+	//res.sendFile(__dirname + '/public/index.html');
+	res.render('index');
 });
 
+
 app.get('/map',function(req,res){
-	res.sendFile(__dirname + '/public/map.html');
+	//res.sendFile(__dirname + '/public/map.html');
+	res.render('map');
 });
 
 
