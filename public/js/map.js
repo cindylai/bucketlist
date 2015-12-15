@@ -9,22 +9,19 @@ function initMap() {
     zoom: 8
   });
 
-  var locations = getLocations();
+  // var locations = getLocations();
 }
  
-function getLocations(){
+$(document).ready(function(){
   console.log("in get locations");
   $.ajax({
       url:"/venues",
       type: "GET",
       success: function(result) {
         console.log("result: " + result);
-        var destringResult = JSON.parse(result);
-        // console.log("destring" + destringResult);
-        // for (var i=0; i<destringResult.length; i++)
-        //   console.log(i, destringResult[i]);
+        $("#results").html(result);
          }
       });
+});
       
 
-}

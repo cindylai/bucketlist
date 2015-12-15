@@ -46,7 +46,7 @@ exports.doRetrieve = function(req, res){
     req.params.collection, 
     req.query,
 		function(modelData) {
-      //console.log("modelData=",modelData);
+      console.log("modelData=",modelData);
 		  if (modelData.length) {
         res.render('results',{title: 'Mongo', obj: modelData});
       } else {

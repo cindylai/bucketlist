@@ -1,1 +1,14 @@
-<%= JSON.stringify(obj) %>
+<table class="table">
+    <% if (obj.length) { %>
+        <% obj.forEach(function(next) { %>
+        <tr>
+        	<td><b>Venue Name: </b> <%= next.name %></td>
+        	<td><b>Address: </b> <%= next.address %></td>
+        	<td><b>Phone: </b> <%= next.phone %></td>
+        	<td><b>Url: </b><%= next.url %></td>
+        	<td id="hideDetails"><%= next.lat %></td>
+        	<td id="hideDetails"><%= next .lng %></td>
+        <tr>
+      <% }); %>
+    <% } %>
+</table>
