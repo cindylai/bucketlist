@@ -48,11 +48,11 @@ exports.doRetrieve = function(req, res){
 		function(modelData) {
       console.log("modelData=",modelData);
 		  if (modelData.length) {
-        res.render('results',{title: 'Mongo', obj: modelData});
+        res.render('results',{title: 'Map', obj: modelData});
       } else {
-        var message = "No documents with "+JSON.stringify(req.query)+ 
-                      " in collection "+req.params.collection+" found.";
-        res.render('message', {title: 'Mongo', obj: message});
+        var message = "Please add some venues";
+        res.render('message', {title: 'Map', obj: message});
+        console.log("in here now");
       }
 		});
 }

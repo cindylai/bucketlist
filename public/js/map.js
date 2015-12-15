@@ -19,6 +19,7 @@ $(document).ready(function(){
       type: "GET",
       success: function(result) {
         console.log("result: " + result);
+        //if No documents with {} in collection venues found.
         $("#results").html(result);
          }
       });

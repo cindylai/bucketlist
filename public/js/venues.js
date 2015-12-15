@@ -1,18 +1,3 @@
-// $(function(){
-// 	$("viewMap").click(function(e){
-// 		e.preventDefault();
-// 		$.ajax({
-//      	 url:"/map",
-//       	 type: "GET",
-//       	 dataType: "html",
-//       	success: function(result) {
-//         	console.log("going to map view");
-//          }
-//       });
-// 	})
-// })
-
-
 $(function(){
 	$("#artsRec").click(function() {
 		var category = "artsRec";
@@ -120,7 +105,7 @@ function displayDetails(response) {
 			var id = venues[i]["id"];
 
 			search += "<tr>";
-			search += "<td><button id='moreDetails' type='button' class='btn btn-link' data-toggle='modal' data-target='#myModal'>"+name+"</button></td>"+"<td><button class='addVenue' type='button'><span class='glyphicon glyphicon-plus'></span></button></td>";
+			search += "<td><button id='moreDetails' type='button' class='btn btn-link' data-toggle='modal' data-target='#myModal'>"+name+"</button></td>"+"<td><button class='addVenue' type='button'><span class='glyphicon glyphicon-star'></span></button></td>";
 
 			// search += "<td><table class='table id='hideDetails'><tr>"+name+'</tr><tr>'+address+'</tr><tr>'+phone+'</tr><tr>'+lat+'</tr><tr>'+lng+'</tr><tr>'+url+"</tr></table></td>";
 			search += "<td id='hideDetails'>"+name+"</td><td id='hideDetails'>"+address+"</td><td id='hideDetails'>"+phone+"</td><td id='hideDetails'>"+lat+"</td><td id='hideDetails'>"+lng+"</td><td id='hideDetails'>"+url+"</td>"+"<td id='hideDetails'>"+id+"</td>";
