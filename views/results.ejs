@@ -1,14 +1,21 @@
 <table class="table">
+<th>Venue Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Website</th>
     <% if (obj.length) { %>
         <% obj.forEach(function(next) { %>
         <tr>
-        	<td><b>Venue Name: </b> <%= next.name %></td>
-        	<td><b>Address: </b> <%= next.address %></td>
-        	<td><b>Phone: </b> <%= next.phone %></td>
-        	<td><b>Url: </b><%= next.url %></td>
+
+        	<td> <%= next.name %></td>
+        	<td><%= next.address %></td>
+        	<td> <%= next.phone %></td>
+        	<td><a href= <%= next.url %> ><%= next.url %></a></td>
         	<td id="hideDetails"><%= next.lat %></td>
         	<td id="hideDetails"><%= next .lng %></td>
         <tr>
       <% }); %>
     <% } %>
 </table>
+
+

@@ -2,6 +2,7 @@
 
 
 // incorporating google maps
+// FUTURE IMPLEMENTATION: adding all the markers to the map
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -9,7 +10,6 @@ function initMap() {
     zoom: 8
   });
 
-  // var locations = getLocations();
 }
  
 //retrieving all favorited venues in the database
