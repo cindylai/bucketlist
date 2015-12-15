@@ -245,7 +245,7 @@ function venueDetails(response){
 	$(".modal-title").html(name);
 	result = "";
 	result += "<table class= table>";
-	if (url === undefined)
+	if (url === "Not Available")
 		result += "<tr>Website: "+ url +"</tr><br>"
 	else
 		result += "<tr>Website: "+"<a href="+url+">"+url+"</a>"+"</tr><br>";
