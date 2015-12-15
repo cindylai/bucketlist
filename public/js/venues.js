@@ -19,12 +19,12 @@ $(function(){
 		})
 });
 
-$(function(){
-	$("#outdoors").click(function() {
-		var category = "outdoors";
-		findVenues(category);
-		})
-});
+// $(function(){
+// 	$("#outdoors").click(function() {
+// 		var category = "outdoors";
+// 		findVenues(category);
+// 		})
+// });
 
 // $(function () {
 //   $('[data-toggle="popover"]').popover()
@@ -49,12 +49,12 @@ function findVenues(category) {
 	else if (category == "food"){
 		categoryType = "4d4b7105d754a06374d81259";
 	}
-	else if (category == "night"){
+	else {
 		categoryType = "4d4b7105d754a06376d81259";
 	}
-	else{
-		categoryType = "4d4b7105d754a06377d81259";
-	}
+	// else{
+	// 	categoryType = "4d4b7105d754a06377d81259";
+	// }
 
 	var CLIENT_ID = "F1ROPFRWFQZHO1IIACPT2SAFPJIO3ERTUVP3NAI20C1T0Q0G";
 	var CLIENT_SECRET = "MSERKPZH1RYR2MVIIH21HNRMZBKKU1THCHKGL2E2S10QBAAP";
