@@ -69,7 +69,7 @@ function findVenues(category) {
 	$.ajax({
  		//url:"https://api.foursquare.com/v2/venues/explore?client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&v=20151206"+"&near="+location, //+"&intent=browse", //+"&section="+section,
  		url:"https://api.foursquare.com/v2/venues/search?client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&v=20151211"+"&near="+location+"&categoryId="+categoryType, //+"&intent=browse", //+"&section="+section,
- 		//url: "https://api.foursquare.com/v2/venues/explore?near="+location+"&section=coffee"+"&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET,
+ 		//url:"https://api.foursquare.com/v2/venues/search?client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&v=20151211"+"&near="+location+"&categoryId="+categoryType+"intent=browse", //+"&intent=browse", //+"&section="+section,
  		data: {
  			method : "GET",
  			callback : "displayDetails" //jsonp callback
@@ -102,12 +102,13 @@ function displayDetails(response) {
 			var lng = venues[i]["location"]["lng"];
 			var checkinCount = venues[i]["stats"]["checkinsCount"];
 			var url = venues[i]["url"];
+			var id = venues[i]["id"];
 
 			search += "<tr>";
 			search += "<td><button id='moreDetails' type='button' class='btn btn-link' data-toggle='modal' data-target='#myModal'>"+name+"</button></td>"+"<td><button class='addVenue' type='button'><span class='glyphicon glyphicon-plus'></span></button></td>";
 
 			// search += "<td><table class='table id='hideDetails'><tr>"+name+'</tr><tr>'+address+'</tr><tr>'+phone+'</tr><tr>'+lat+'</tr><tr>'+lng+'</tr><tr>'+url+"</tr></table></td>";
-			search += "<td id='hideDetails'>"+name+"</td><td id='hideDetails'>"+address+"</td><td id='hideDetails'>"+phone+"</td><td id='hideDetails'>"+lat+"</td><td id='hideDetails'>"+lng+"</td><td id='hideDetails'>"+url+"</td>";
+			search += "<td id='hideDetails'>"+name+"</td><td id='hideDetails'>"+address+"</td><td id='hideDetails'>"+phone+"</td><td id='hideDetails'>"+lat+"</td><td id='hideDetails'>"+lng+"</td><td id='hideDetails'>"+url+"</td>"+"<td id='hideDetails'>"+id+"</td>";
 
 			search += "</tr>";
 			
@@ -156,24 +157,70 @@ $(function(){
 
 $(function(){
 	$("#responseArea").on("click","#moreDetails",function(venue){
-		console.log("trying to view more details");
-		console.log($(this).text());
-		console.log("next",$(this).parent().next().next().text());
-		console.log("next",$(this).parent().next().next().next().text());
-		var name = $(this).parent().next().next().text();
-		var address = $(this).parent().next().next().next().text();
-		var phone = $(this).parent().next().next().next().next().text();
-		var lat = $(this).parent().next().next().next().next().next().text();
-		var lng = $(this).parent().next().next().next().next().next().next().text();
-		var url = $(this).parent().next().next().next().next().next().next().next().text();
+		// console.log("trying to view more details");
+		// console.log($(this).text());
+		// console.log("next",$(this).parent().next().next().text());
+		// console.log("next",$(this).parent().next().next().next().text());
+		// var name = $(this).parent().next().next().text();
+		// var address = $(this).parent().next().next().next().text();
+		// var phone = $(this).parent().next().next().next().next().text();
+		// var lat = $(this).parent().next().next().next().next().next().text();
+		// var lng = $(this).parent().next().next().next().next().next().next().text();
+		// var url = $(this).parent().next().next().next().next().next().next().next().text();
+		var id = $(this).parent().next().next().next().next().next().next().next().next().text();
 
-		$(".modal-title").html(name);
-		$(".modal-body p").html(address, phone, lat, lng, url);
-		
+		// $(".modal-title").html(name);
+		// $(".modal-body p").html(address, phone, lat, lng, url);
+		// console.log("id",id);
 
+		$('#myModal').modal({
+        show: 'false'
+   		 }); 
+		var CLIENT_ID = "F1ROPFRWFQZHO1IIACPT2SAFPJIO3ERTUVP3NAI20C1T0Q0G";
+		var CLIENT_SECRET = "MSERKPZH1RYR2MVIIH21HNRMZBKKU1THCHKGL2E2S10QBAAP";
+
+		$(this).parent().next().next().next().next().next().next().next().next().text();
+		try{
+		$.ajax({
+ 		url:"https://api.foursquare.com/v2/venues/"+id+"?&client_id="+CLIENT_ID+"&client_secret="+CLIENT_SECRET+"&v=20151211",
+ 		data: {
+ 			method : "GET",
+ 			callback : "venueDetails" //jsonp callback
+ 			},
+  		jsonp: false,						
+  		dataType: "jsonp",			
+		crossDomain: true
+		} );
+	 return false;
+	} catch (e) {console.log(e.description);}
 	});
 });
 
+function venueDetails(response){
+	console.log(response.response["venue"]);
+	var venue = response.response["venue"];
+	var image = venue["canonicalUrl"];
+	var name = venue["name"];
+	var address = venue["location"]["formattedAddress"];
+	var phone = venue["contact"]["formattedPhone"];
+	var rating = venue["rating"];
+	var open = venue["popular"]["isOpen"];
+	var tags = venue["tags"];
+	// console.log("image", image);
+	// console.log("name",name);
+	// console.log("address",address);
+	// console.log(phone);
+	// console.log(rating);
+	console.log(open);
+	console.log(tags);
+	$(".modal-title").html(name);
+	$(".modal-body p").html( rating, open, tags);
 
+	$('#myModal').modal({
+        show: 'true'
+    }); 
+
+};
+	
 
 

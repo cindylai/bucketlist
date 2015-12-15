@@ -56,6 +56,7 @@ exports.create = function(collection, data, callback) {
 /********** CRUD Retrieve -> Mongo find ***************************************/
 exports.retrieve = function(collection, query, callback) {
   mongoDB.collection(collection).find(query).toArray(function(err, docs) {
+    //console.log("MONGO",docs);
     if (err) doError(err);
     callback(docs);
   });
