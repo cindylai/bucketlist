@@ -201,11 +201,22 @@ function venueDetails(response){
 	var venue = response.response["venue"];
 	var image = venue["canonicalUrl"];
 	var name = venue["name"];
-	var address = venue["location"]["formattedAddress"];
+	var street = venue["location"]["formattedAddress"][0];
+	var state = venue["location"]["formattedAddress"][1];
+	var country = venue["location"]["formattedAddress"][2];
+
 	var phone = venue["contact"]["formattedPhone"];
 	var rating = venue["rating"];
-	var open = venue["popular"]["isOpen"];
+	if (venue["popular"]["isOpen"] == true)
+		var open = "Yes"
+	else
+		var open = "No"
+	//var open = venue["popular"]["isOpen"];
 	var tags = venue["tags"];
+	if (venue["url"] === undefined)
+		var url = "Not Available";
+	else
+		var url = venue["url"];
 	// console.log("image", image);
 	// console.log("name",name);
 	// console.log("address",address);
@@ -214,7 +225,23 @@ function venueDetails(response){
 	console.log(open);
 	console.log(tags);
 	$(".modal-title").html(name);
-	$(".modal-body p").html( rating, open, tags);
+	result = "";
+	result += "<table class= table>";
+	if (url === undefined)
+		result += "<tr>Website: "+ url +"</tr><br>"
+	else
+		result += "<tr>Website: "+"<a href="+url+">"+url+"</a>"+"</tr><br>";
+	result += "<tr>Rating: "+rating+"</tr><br>";
+	result += "<tr>Open?: "+open+"</tr><br>";
+	result += "<tr>Phone Number: "+phone+"</tr><br>";
+	result += "<tr id='address'>Address: "+street+"<br>"+state+"<br>"+country+"</tr><br>";
+	result += "<tr>Tags: "+tags+"</tr>";
+	result += "</table";
+	//result += "<tr>Rating:"+rating+"</tr>";
+
+	//$(".modal-body p").html( rating, open, tags);
+	console.log("result=",result);
+	$(".modal-body p").html(result);
 
 	$('#myModal').modal({
         show: 'true'
