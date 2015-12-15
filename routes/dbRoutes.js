@@ -1,21 +1,6 @@
 //include model
 var mongoModel = require("../models/mongoModel.js")
 
-// Define the routes for this controller
-// exports.init = function(app) {
-//   app.get('/', index); //welcome page
-//   // The collection parameter maps directly to the mongoDB collection
-//   app.put('/:collection', doCreate); // CRUD Create
-//   app.get('/:collection', doRetrieve); // CRUD Retrieve
-//   app.post('/:collection', doUpdate); // CRUD Update
-//   app.delete('/:collection', doDelete); //CRUD Delete
-// }
-
-// No path:  display instructions for use
-// index = function(req, res) {
-//   res.render('index', {title: 'MongoDB Test'})
-// };
-
 /********** CRUD Create *******************************************************
  * Take the object defined in the request body and do the Create
  * operation in mongoModel.

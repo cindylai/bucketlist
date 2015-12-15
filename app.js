@@ -56,7 +56,6 @@ app.post('/:collection', dbRoutes.doUpdate); // CRUD Update
 //app.delete('/:collection', dbRoutes.doDelete); //CRUD Delete
 
 
-
 var httpServer = require('http').createServer(app);
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 50000;

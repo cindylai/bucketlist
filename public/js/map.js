@@ -1,7 +1,7 @@
 // google maps API key AIzaSyADW0E8rT5v3Aam3qWO2vTr5bzMHEh5NBM
 
-console.log("in maps!");
 
+// incorporating google maps
 var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -12,17 +12,18 @@ function initMap() {
   // var locations = getLocations();
 }
  
+//retrieving all favorited venues in the database
 $(document).ready(function(){
   console.log("in get locations");
   $.ajax({
       url:"/venues",
       type: "GET",
       success: function(result) {
-        console.log("result: " + result);
-        //if No documents with {} in collection venues found.
         $("#results").html(result);
          }
       });
 });
-      
+
+
+
 
