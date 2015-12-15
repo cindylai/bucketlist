@@ -207,10 +207,28 @@ function venueDetails(response){
 
 	var phone = venue["contact"]["formattedPhone"];
 	var rating = venue["rating"];
-	if (venue["popular"]["isOpen"] == true)
-		var open = "Yes"
-	else
-		var open = "No"
+	if ((venue["popular"] === undefined) & (venue["hours"] === undefined)){
+
+		var open = "Not Available";
+	}
+	else if (venue["popular"] === undefined){
+		if (venue["hours"] !== undefined){
+			if(venue["hours"]["isOpen"] ==true)
+				var open = "Yes";
+			else
+				var open = "No";
+		}
+	}
+	else if (venue["hours"] === undefined){
+		if (venue["popular"] !== undefined){
+			if (venue["popular"]["isOpen"] ==true)
+				var open = "Yes";
+			else
+				var open = "No";
+		}
+	}
+		
+	
 	//var open = venue["popular"]["isOpen"];
 	var tags = venue["tags"];
 	if (venue["url"] === undefined)
