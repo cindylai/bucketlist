@@ -1,3 +1,18 @@
+// $(function(){
+// 	$("viewMap").click(function(e){
+// 		e.preventDefault();
+// 		$.ajax({
+//      	 url:"/map",
+//       	 type: "GET",
+//       	 dataType: "html",
+//       	success: function(result) {
+//         	console.log("going to map view");
+//          }
+//       });
+// 	})
+// })
+
+
 $(function(){
 	$("#artsRec").click(function() {
 		var category = "artsRec";
